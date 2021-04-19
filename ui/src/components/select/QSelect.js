@@ -989,6 +989,10 @@ export default defineComponent({
         }
       }
 
+      if (slots.control) {
+        return slots.control(data)
+      }
+
       return h('input', data)
     }
 

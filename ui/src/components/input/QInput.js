@@ -40,7 +40,7 @@ export default defineComponent({
     'paste', 'change'
   ],
 
-  setup (props, { emit, attrs }) {
+  setup (props, { emit, attrs, slots }) {
     const temp = {}
     let emitCachedValue = NaN, typedNumber, stopValueWatcher, emitTimer, emitValueFn
 
@@ -341,7 +341,7 @@ export default defineComponent({
       ),
 
       getControl: () => {
-        return h(isTextarea.value === true ? 'textarea' : 'input', {
+        const data = {
           ref: inputRef,
           class: [
             'q-field__native q-placeholder',
@@ -355,7 +355,14 @@ export default defineComponent({
               ? { value: getCurValue() }
               : formDomProps.value
           )
-        })
+        }
+
+        if (slots.control) {
+          data.isTextarea = isTextarea.value
+          return slots.control(data)
+        }
+
+        return h(isTextarea.value === true ? 'textarea' : 'input', data)
       },
 
       getShadowControl: () => {
