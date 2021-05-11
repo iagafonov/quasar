@@ -424,6 +424,10 @@
           "__exemption": [ "examples" ]
         }
       }
+    },
+
+    "control": {
+      "desc": "Slot for custom input"
     }
   },
 

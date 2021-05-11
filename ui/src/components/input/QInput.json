@@ -73,6 +73,12 @@
     }
   },
 
+  "slots": {
+    "control": {
+      "desc": "Slot for custom input"
+    }
+  },
+
   "events": {
     "update:model-value": {
       "extends": "update:model-value",
